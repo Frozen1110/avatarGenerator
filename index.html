@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>Avatar Generator</title>
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+	<link rel="stylesheet" href="normalize.css">
+	<link rel="stylesheet" href="style.css">
+
+	<style>
+		@import url('https://fonts.googleapis.com/css?family=Comfortaa:400,700&display=swap&subset=cyrillic');
+	</style>
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js"></script> -->
+	<!-- <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.min.js"></script> -->
+	<script src="https://github.com/niklasvh/html2canvas/releases/download/v1.0.0-alpha.12/html2canvas.min.js"></script>
+	<script src="dom-to-image.min.js"></script>
+	
+	<!-- <script defer src="http://html2canvas.hertzen.com/dist/html2canvas.js"></script> -->
+	<!-- <script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script> -->
+	<script defer src="avatar-generator.js"></script>
+</head>
+<body>
+	<div class="editor-wrap">
+		<div class="info-btn">i</div>
+		<div class="info-box hidden">
+			<div class="close-info-btn">x</div>
+			<div class="me-img">
+				<div class="me-text">
+					<span class="ru active">=)</span>
+					<span class="en">=)</span>
+				</div>
+			</div>
+			<div class="info-text ru active">
+				<h3 class="editor-heading">Привет!</h3>
+				<p>Меня зовут Джен (никнейм, конечно), и этот генератор аватарок – мой первый "серьезный" проект с использованием JavaScript.</p>
+				<p>Вероятно, он не идеален, но я думаю, что в дальнейшем еще буду его расширять и улучшать.</p>
+				<p>P.S. Да, возможности скачивать картинки пока нет... Если хотите сохранить результат, на данный момент единственный способ это сделать – скриншот.</p>
+				<p>Хорошего вам дня =)</p>
+			</div>
+
+			<div class="info-text en">
+				<h3 class="editor-heading">Hi there!</h3>
+				<p>My name is Gen (that's a nickname, of course) and this Avatar Generator is my first "serious" project with JavaScript.</p>
+				<p>It's not perfect, I guess, but I think, I'll be expanding and improving it in the future.</p>
+				<p>P.S. Yep, there is no way to download the pictures yet... If you want to save your result, the only way now is to take a screenshot.</p>
+				<p>Have a nice day =)</p>
+			</div>
+
+			<a class="ru active" href="https://github.com/GenRayne">Мой аккаунт на GitHub</a>
+			<a class="en" href="https://github.com/GenRayne">My GitHub account</a>
+		</div>
+
+		<div class="toggle-lang">RU</div>
+
+		<h1 class="editor-heading">
+			<span class="ru active">Генератор простых аватарок</span>
+			<span class="en">Simple Avatar Generator</span>
+		</h1>
+		<div class="editor-container">
+			<div class="editor-left-side">
+
+				<div class="editor-preset-box">
+					<h2 class="editor-heading">
+						<span class="ru active">Пресеты</span>
+						<span class="en">Presets</span>
+					</h2>
+
+					<ul class="ed-parts-tabs">
+						<li class="face active" data-tab="face">
+							<span class="ru active">Лицо</span>
+							<span class="en">Face</span>
+						</li>
+						<li class="hair" data-tab="hair">
+							<span class="ru active">Волосы</span>
+							<span class="en">Hair</span>
+						</li>
+						<li class="accessories" data-tab="accs">
+							<span class="ru active">Аксессуары</span>
+							<span class="en">Accessories</span>
+						</li>
+					</ul>
+					
+					<div class="ed-parts-box">
+						<div class="ed-parts ed-face active" data-tab-box="face">
+							<div class="presets head-presets">
+								<div class="preset head-preset head-preset-1 selected-preset">
+									<!-- head 1 -->
+								</div>
+								<div class="preset head-preset head-preset-2">
+									<!-- head 2 -->
+								</div>
+								<div class="preset head-preset head-preset-3">
+									<!-- head 3 -->
+								</div>
+							</div>
+							<div class="presets eyes-presets">
+								<div class="preset eyes-preset eyes-preset-1 selected-preset">
+									<!-- eyes 1 -->
+								</div>
+								<div class="preset eyes-preset eyes-preset-2">
+									<!-- eyes 2 -->
+								</div>
+								<div class="preset eyes-preset eyes-preset-3">
+									<!-- eyes 3 -->
+								</div>
+
+							</div>
+							<div class="presets mouth-presets">
+								<div class="preset mouth-preset mouth-preset-1 selected-preset">
+									<!-- mouth 1 -->
+								</div>
+								<div class="preset mouth-preset mouth-preset-2">
+									<!-- mouth 2 -->
+								</div>
+								<div class="preset mouth-preset mouth-preset-3">
+									<!-- mouth 3 -->
+								</div>
+								<div class="preset mouth-preset mouth-preset-4">
+									<!-- mouth 4 -->
+								</div>
+								<div class="preset mouth-preset mouth-preset-5">
+									<!-- mouth 5 -->
+								</div>
+							</div>
+						</div>
+
+						<div class="ed-parts ed-hair" data-tab-box="hair">
+							<div class="presets hair-fronts">
+								<div class="preset hair-front hair-front-4 selected-preset">
+									<!-- hair front 4 -->
+								</div>
+								<div class="preset hair-front hair-front-1">
+									<!-- hair front 1 -->
+								</div>
+								<div class="preset hair-front hair-front-2">
+									<!-- hair front 2 -->
+								</div>
+								<div class="preset hair-front hair-front-3">
+									<!-- hair front 3 -->
+								</div>
+								<div class="preset hair-front hair-front-5">
+									<!-- hair front 5 -->
+								</div>
+								<div class="preset hair-front hair-front-6">
+									<!-- hair front 6 -->
+								</div>
+							</div>
+							<div class="presets hair-backs">
+								<div class="preset hair-back hair-back-0">
+									<!-- hair back 0 -->
+								</div>
+								<div class="preset hair-back hair-back-1-1 selected-preset">
+									<!-- hair back 1-1 -->
+								</div>
+								<div class="preset hair-back hair-back-1">
+									<!-- hair back 1 -->
+								</div>
+								<div class="preset hair-back hair-back-2">
+									<!-- hair back 2 -->
+								</div>
+								<div class="preset hair-back hair-back-2-1">
+									<!-- hair back 2-1 -->
+								</div>
+								<div class="preset hair-back hair-back-3">
+									<!-- hair back 3 -->
+								</div>
+								<div class="preset hair-back hair-back-4">
+									<!-- hair back 4 -->
+								</div>
+								<div class="preset hair-back hair-back-5">
+									<!-- hair back 5 -->
+								</div>
+								<div class="preset hair-back hair-back-6">
+									<!-- hair back 6 -->
+								</div>
+							</div>
+						</div>
+
+						<div class="ed-parts ed-accs" data-tab-box="accs">
+							<div class="presets glasses-presets">
+								<div class="preset glasses-preset glasses-preset-0 selected-preset">
+									<!-- glss 0 -->
+								</div>
+								<div class="preset glasses-preset glasses-preset-1">
+									<!-- glss 1 -->
+								</div>
+								<div class="preset glasses-preset glasses-preset-2">
+									<!-- glss 2 -->
+								</div>
+								<div class="preset glasses-preset glasses-preset-3">
+									<!-- glss 3 -->
+								</div>
+								<div class="preset glasses-preset glasses-preset-4">
+									<!-- glss 4 -->
+								</div>
+							</div>
+							<div class="presets earrings-presets">
+								<div class="preset earrings-preset earrings-preset-0 selected-preset">
+									<!-- earrings 0 -->
+								</div>
+								<div class="preset earrings-preset earrings-preset-1">
+									<!-- earrings 1 -->
+								</div>
+								<div class="preset earrings-preset earrings-preset-2">
+									<!-- earrings 2 -->
+								</div>
+								<div class="preset earrings-preset earrings-preset-3">
+									<!-- earrings 3 -->
+								</div>
+								<div class="preset earrings-preset earrings-preset-4">
+									<!-- earrings 4 -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="editor-colors">
+					<h2 class="editor-heading">
+						<span class="ru active">Цвета</span>
+						<span class="en">Colors</span>
+					</h2>
+					<div class="color-presets-wrap">
+						<div class="color-presets">
+							<div class="color-preset-box">
+								<input type="color" id="skin-color-input">
+								<label for="skin-color-input"><span class="color-preset skin-color-preset"></span>
+								<span class="color-preset-text ru active">Кожа</span>
+								<span class="color-preset-text en">Skin</span></label>
+								<input class="color-input skin-color-input" type="text" maxlength="6" value="ffe0d4">
+							</div>
+
+							<div class="color-preset-box">
+								<input type="color" id="hair-color-input">
+								<label for="hair-color-input"><span class="color-preset hair-color-preset"></span>
+								<span class="color-preset-text ru active">Волосы</span>
+								<span class="color-preset-text en">Hair</span></label>
+								<input class="color-input hair-color-input" type="text" maxlength="6" value="916961">
+							</div>
+
+							<div class="color-preset-box">
+								<input type="color" id="eye-color-input">
+								<label for="eye-color-input"><span class="color-preset eye-color-preset"></span>
+								<span class="color-preset-text ru active">Глаза</span>
+								<span class="color-preset-text en">Eyes</span></label>
+								<input class="color-input eye-color-input" maxlength="6" type="text" value="9bbde0">
+							</div>
+
+							<div class="color-preset-box">
+								<input type="color" id="bg-color-input">
+								<label for="bg-color-input"><span class="color-preset bg-color-preset"></span>
+								<span class="color-preset-text ru active">Фон</span>
+								<span class="color-preset-text en">BG</span></label>
+								<input class="color-input bg-color-input" type="text" maxlength="6" value="ffffff">
+							</div>
+
+							<div class="color-preset-box">
+								<input type="color" id="shirt-color-input">
+								<label for="shirt-color-input"><span class="color-preset shirt-color-preset"></span>
+								<span class="color-preset-text ru active">Одежда</span>
+								<span class="color-preset-text en">Clothes</span></label>
+								<input class="color-input shirt-color-input" type="text" maxlength="6" value="f39e7a">
+							</div>
+
+							<div class="color-preset-box">
+								<input type="color" id="collar-color-input">
+								<label for="collar-color-input"><span class="color-preset collar-color-preset"></span>
+								<span class="color-preset-text ru active">Ворот</span>
+								<span class="color-preset-text en">Collar</span></label>
+								<input class="color-input collar-color-input" type="text" maxlength="6" value="7688a1">
+							</div>
+
+							<div class="color-preset-box">
+								<input type="color" id="glasses-color-input">
+								<label for="glasses-color-input"><span class="color-preset glasses-color-preset"></span>
+								<span class="color-preset-text ru active">Очки</span>
+								<span class="color-preset-text en">Glasses</span></label>
+								<input class="color-input glasses-color-input" type="text" maxlength="6" value="564469">
+							</div>
+
+							<div class="color-preset-box">
+								<input type="color" id="earrings-color-input">
+								<label for="earrings-color-input"><span class="color-preset earrings-color-preset"></span>
+								<span class="color-preset-text ru active">Серьги</span>
+								<span class="color-preset-text en">Earrings</span></label>
+								<input class="color-input earrings-color-input" type="text" maxlength="6" value="fde7b6">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="editor-right-side">
+				<div class="portrait-box" id="asdfg">
+
+					<svg>
+						<defs>
+							<style type="text/css">
+								.skin, .skin-shadow {fill:#FFE0D4}
+								.hair, .eyebrows	{fill:#916961}
+								.mouth 				{fill:#916961}
+
+								.collar		  {fill:#7688A1}
+								.shirt	      {fill:#FF956E}
+
+								.fil7 		  {fill:none}
+								.pupil-shadow {fill:#402B2B}
+								.pupil 		  {fill:#543D3D}
+								.iris-shadow  {fill:#7D9FC2}
+								.iris		  {fill:#9BBDE0}
+								.eye-shadow	  {fill:#C3C3C3}
+								.eye-white	  {fill:#FEFEFE}
+								.cosmetics 	  {fill:#FFE0D4}
+
+								.glasses {fill:#564469}
+							</style>
+						</defs>
+					</svg>
+
+					<!-- ========= HAIR BACK ========= -->
+
+					<svg class="hair-back-parts" width="327px" height="350px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 327 350">
+						<g class="hair-back-part hair-back-part-0 hidden" id="hair-b-0">
+						</g>
+						<g class="hair-back-part hair-back-part-1-1" id="hair-b-1-1">
+							<path class="hair" d="M77 127c0,21 -5,21 -4,23 1,2 9,9 13,12 2,3 2,14 2,19 0,2 11,2 15,6 4,3 4,12 5,14 0,3 14,-1 18,10 4,10 27,22 37,22l0 0c10,0 31,-10 36,-22 6,-13 18,-7 19,-10 1,-2 1,-11 5,-14 3,-4 14,-4 14,-6 1,-5 0,-16 3,-19 3,-3 12,-10 13,-12 1,-2 -4,-2 -4,-23 0,-22 -6,-54 -22,-78 -9,-15 -34,-27 -63,-27 -27,0 -50,6 -62,20 -15,16 -25,63 -25,85z"/>
+						</g>
+						<g class="hair-back-part hair-back-part-1 hidden" id="hair-b-1">
+							<path class="hair" d="M77 130c-1,-33 8,-64 16,-77 27,-45 116,-42 140,0 8,15 18,46 16,78 -4,59 -44,71 -59,91 -13,17 -39,18 -52,2 -21,-26 -58,-37 -61,-94z"/>
+						</g>
+						<g class="hair-back-part hair-back-part-2 hidden" id="hair-b-2">
+							<path class="hair" d="M162 237c-71,0 -100,-32 -87,-80 15,-54 0,-134 87,-134 91,0 72,72 89,135 12,45 -11,79 -89,79z"/>
+						</g>
+						<g class="hair-back-part hair-back-part-2-1 hidden" id="hair-b-2-1">
+							<path class="hair" d="M235 200c0,0 -24,-21 -72,-21 -49,0 -72,21 -72,21 -5,-18 -12,-37 -14,-61 -3,-32 3,-71 21,-95 13,-17 33,-24 65,-23 39,0 61,14 73,39 10,22 14,52 12,79 -1,23 -8,44 -13,61z"/>
+						</g>
+						<g class="hair-back-part hair-back-part-3 hidden" id="hair-b-3">
+							<path class="hair" d="M164 326c-92,0 -98,-48 -86,-126 6,-36 8,-75 8,-109 0,-19 23,-70 77,-69 54,0 79,51 78,69 -1,37 2,74 7,110 12,78 8,125 -84,125z"/>
+						</g>
+						<g class="hair-back-part hair-back-part-4 hidden" id="hair-b-4">
+							<path class="hair" d="M77 113c-1,7 -1,32 -3,45 -3,15 -7,29 -7,32 -1,2 13,-12 14,-8 2,5 3,19 3,24 0,6 16,-16 18,-3 1,10 2,22 3,26 0,10 11,-24 17,-5 3,11 12,24 12,24 0,0 8,-13 14,-8 6,5 15,17 15,18 0,0 12,-15 15,-18 7,-5 15,8 15,8 0,0 8,-13 11,-24 6,-19 17,15 18,5 0,-4 2,-16 3,-26 1,-13 17,9 17,3 0,-5 1,-19 3,-24 1,-5 15,10 15,8 -1,-3 -5,-17 -7,-32 -3,-16 -3,-38 -4,-45 -5,-50 -24,-73 -40,-82 -15,-10 -48,-8 -48,-8 -14,0 -34,0 -46,7 -15,10 -32,30 -38,83z"/>
+						</g>
+						<g class="hair-back-part hair-back-part-5 hidden" id="hair-b-5">
+							<path class="hair" d="M83 87c-3,27 -12,32 -14,55 -2,33 21,59 -10,89 -3,3 3,4 13,1 15,-5 18,-14 21,-13 3,0 7,16 -9,33 -43,47 49,68 77,69 41,2 96,-13 94,-56 0,0 -16,-8 -20,-20 -5,-11 -8,-21 1,-16 8,4 21,7 29,7 5,0 -18,-15 -18,-37 0,-23 11,-43 8,-62 -3,-18 -8,-27 -14,-54 -6,-28 -59,-56 -106,-44 -47,11 -52,48 -52,48z"/>
+						</g>
+						<g class="hair-back-part hair-back-part-6 hidden" id="hair-b-6">
+							<path id="hair-b-6-1" class="hair" d="M101 179c0,0 -20,1 -27,12 -21,30 -27,30 -27,32 1,2 9,4 14,0 14,-11 -9,14 0,42 1,3 18,-5 24,-10 12,-10 5,-7 8,8 2,12 5,9 5,9 0,0 15,-24 19,-39 4,-15 4,-34 1,-40 -3,-5 -17,-14 -17,-14z"/>
+							<rect id="r-band-1" class="shirt r-band" transform="matrix(0.60412 -0.796893 0.796893 0.60412 94.0656 178.231)" width="12.2782" height="34.0629" rx="4" ry="4"/>
+							<path id="hair-b-6-2" class="hair" d="M225 179c0,0 20,1 27,12 21,30 27,30 26,32 0,2 -8,4 -13,0 -14,-11 9,14 0,42 -1,3 -18,-5 -25,-10 -12,-10 -4,-7 -7,8 -2,12 -5,9 -5,9 0,0 -15,-24 -19,-39 -5,-15 -4,-34 -1,-40 3,-5 17,-14 17,-14z"/>
+							<rect id="r-band-2" class="shirt r-band" transform="matrix(-0.60412 -0.796893 -0.796893 0.60412 231.771 178.231)" width="12.2782" height="34.0629" rx="4" ry="4"/>
+						</g>
+						
+					</svg>
+
+					<!-- ========= BODY ========= -->
+
+					<svg class="male-preset" width="327px" height="350px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 327 350">
+						<g id="layer-male">
+							<path id="body-male" class="skin" d="M198 183c0,0 -5,30 -2,49 4,19 49,25 58,27 8,1 37,5 48,23 18,30 24,68 17,68l-311 0c-6,0 -1,-38 17,-68 12,-19 41,-22 49,-23 8,-2 51,-7 56,-27 6,-20 -5,-49 -5,-49l39 2 34 -2z"/>
+							<path id="neck-shadows-male" class="skin-shadow" d="M151 252c0,0 4,21 13,21 9,0 13,-21 13,-21 0,0 -12,17 -26,0zm-19 -32c8,9 21,22 33,22 12,0 23,-11 30,-20 0,-16 4,-30 4,-30l-36 2 -35 -2c0,0 4,13 4,28z"/>
+							<path id="shirt-male" class="shirt" d="M148 350l0 0zm15 -69c-25,0 -46,-14 -51,-33 -15,7 -31,9 -38,11 -7,1 -38,4 -49,23 -19,30 -24,68 -17,68l140 0 171 0c7,0 2,-39 -17,-69 -11,-18 -42,-21 -49,-22 -6,-2 -24,-4 -38,-11 -5,19 -26,33 -52,33z"/>
+							<path id="collar-male" class="collar" d="M214 248c-4,19 -25,33 -51,33 -25,0 -46,-14 -51,-33 -6,3 -13,5 -19,7 7,24 35,42 70,42 35,0 64,-18 70,-42 -6,-2 -13,-4 -19,-7z"/>
+						</g>
+					</svg>
+
+					<svg class="female-preset hidden" width="327px" height="350px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 327 350">
+						<g id="female-layer">
+							<path id="body-female" class="skin" d="M197 183c0,0 -5,30 -1,49 4,19 43,25 51,27 8,1 35,5 45,23 18,30 23,68 17,68l-292 0c-6,0 -2,-38 16,-68 11,-19 38,-22 46,-23 8,-2 46,-7 51,-27 5,-20 -2,-48 -2,-48l35 1 34 -2z"/>
+							<path id="neck-shadows-female" class="skin-shadow" d="M151 256c0,0 4,22 13,22 9,0 13,-22 13,-22 0,0 -12,17 -26,0zm-19 -36c8,9 21,22 33,22 12,0 23,-11 30,-20 0,-16 4,-30 4,-30l-36 2 -36 -2c0,0 4,13 5,28z"/>
+							<path id="shirt-female" class="shirt" d="M148 350l0 0zm15 -30c-34,0 -61,-24 -61,-54 0,-5 1,-9 2,-13 -11,3 -21,5 -25,6 -8,1 -35,4 -46,23 -18,30 -22,68 -16,68l131 0 161 0c6,0 1,-38 -17,-68 -10,-18 -37,-22 -45,-23 -3,-1 -14,-3 -25,-6 2,4 2,9 2,13 0,30 -27,54 -61,54z"/>
+							<path id="collar-female" class="collar" d="M163 320c-34,0 -61,-24 -61,-54 0,-5 1,-9 2,-13 -4,1 -7,2 -11,3 -1,4 -1,9 -1,14 0,38 32,68 71,68 40,0 72,-30 72,-68 0,-5 -1,-10 -2,-14 -3,-1 -7,-2 -11,-3 2,4 2,9 2,13 0,30 -27,54 -61,54z"/>
+						</g>
+					</svg>
+
+					<!-- ========= HEAD ========= -->
+
+					<svg class="heads" width="327px" height="350px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 327 350">
+						<g class="head-part head-1" id="head-1">
+							<path class="skin" d="M236 118c0,-1 0,-2 0,-3 0,-21 -1,-40 -8,-56 -11,-23 -30,-37 -65,-37 -34,0 -55,14 -65,37 -8,16 -9,35 -9,56 0,1 0,2 0,3 -2,0 -4,0 -6,2 -4,4 -8,16 -1,26 8,11 7,22 13,20 2,0 3,-1 3,-2 14,31 40,54 65,54 25,0 50,-24 64,-55 1,2 2,3 3,3 7,2 5,-9 14,-20 7,-10 2,-22 -1,-26 -2,-2 -4,-3 -7,-2z"/>
+							<path class="skin-shadow face-shadows" d="M223 120l-12 55c0,0 11,-7 16,-14 5,-6 9,-11 9,-25 -1,-14 -6,-14 -13,-16zm-120 0l11 55c0,0 -10,-7 -15,-14 -5,-6 -9,-11 -9,-25 0,-14 6,-14 13,-16z"/>
+						</g>
+						<g class="head-part head-2 hidden" id="head-2">
+							<path class="skin" d="M236 118c0,-1 0,-2 0,-3 0,-21 -1,-40 -8,-56 -11,-23 -30,-37 -65,-37 -34,0 -55,14 -65,37 -8,16 -9,35 -9,56 0,1 0,2 0,3 -2,0 -3,-1 -5,1 -4,4 -10,16 -2,27 8,11 7,22 14,20 1,0 2,-1 2,-2 3,7 13,22 18,27 7,9 37,28 47,28 10,0 39,-19 47,-28 5,-6 14,-21 17,-28 1,2 2,3 3,3 7,2 6,-9 14,-20 7,-11 2,-23 -2,-27 -2,-1 -4,-2 -6,-1z"/>
+							<path class="skin-shadow face-shadows" d="M226 127l-17 47c0,0 11,-7 17,-13 5,-5 10,-10 11,-24 0,-14 -9,-12 -11,-10zm-127 0l17 47c0,0 -11,-7 -16,-13 -5,-5 -10,-10 -11,-24 -1,-14 8,-12 10,-10z"/>
+						</g>			
+						<g class="head-part head-3 hidden" id="head-3">
+							<path class="skin" d="M236 118c0,-1 0,-2 0,-3 0,-21 -1,-40 -8,-56 -11,-23 -30,-37 -65,-37 -34,0 -55,14 -65,37 -8,16 -9,35 -9,56 0,1 0,2 0,3 -2,0 -3,-1 -5,1 -4,4 -10,16 -2,27 8,11 7,22 14,20 1,0 2,-1 2,-2 3,7 15,25 19,31 8,9 36,25 46,25 10,0 38,-16 45,-25 5,-6 16,-25 19,-32 1,2 2,3 3,3 7,2 6,-9 14,-20 7,-11 2,-23 -2,-27 -2,-1 -4,-2 -6,-1z"/>
+							<path class="skin-shadow face-shadows" d="M225 127l-17 53c0,0 11,-8 16,-15 5,-6 10,-12 11,-27 1,-15 -8,-13 -10,-11zm-124 0l17 53c0,0 -11,-8 -16,-15 -6,-6 -11,-12 -11,-27 -1,-15 8,-13 10,-11z"/>
+						</g>
+						
+						<path id="nose" class="skin-shadow" d="M151 165c0,0 7,7 12,7 5,0 12,-6 12,-6 0,0 -3,-4 -6,-4 -3,0 -3,3 -6,3 -3,0 -3,-3 -6,-3 -2,0 -6,3 -6,3z"/>
+					</svg>
+
+					<!-- ========= EARrINGS ========= -->
+
+					<svg class="heads" width="327px" height="350px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 327 350">
+						<defs>
+							<style type="text/css">
+								.earrings-1 {fill:#92E8DA}
+								.earrings-2 {fill:#FDE7B6}
+								.earrings-3 {fill:#96D7FF}
+								.earrings-4 {fill:#FFC061}
+							</style>
+						</defs>
+						<g class="earrings-part earrings-0" id="earrings-0">
+						</g>
+						<g class="earrings-part earrings_1 hidden" id="earrings-1">
+							<path class="earrings earrings-1" d="M94 181c-3,0 -6,-5 -6,-11 0,-5 2,-10 5,-11 -5,0 -8,7 -8,15 0,8 3,15 8,15 4,0 8,-7 8,-15 0,-4 -1,-7 -2,-10 0,2 1,4 1,6 0,6 -3,11 -6,11z"/>
+							<path class="earrings earrings-1" d="M232 181c3,0 6,-5 6,-11 0,-5 -2,-10 -5,-11 4,0 8,7 8,15 0,8 -4,15 -8,15 -4,0 -8,-7 -8,-15 0,-4 1,-7 2,-10 0,2 -1,4 -1,6 0,6 3,11 6,11z"/>
+						</g>
+						<g class="earrings-part earrings_2 hidden" id="earrings-2">
+							<path class="earrings earrings-2" d="M94 192l9 0 -4 -15 -5 -15 -4 15 -4 15 8 0zm4 -6l-4 0 -3 0 2 -9 1 -10 2 10 2 9z"/>
+							<path class="earrings earrings-2" d="M231 192l8 0 -4 -15 -4 -15 -4 15 -4 15 8 0zm3 -6l-3 0 -3 0 1 -9 2 -10 2 10 1 9z"/>
+						</g>
+						<g class="earrings-part earrings_3 hidden" id="earrings-3">
+							<polygon class="earrings earrings-3" points="95,195 99,187 95,163 90,187 "/>
+							<polygon class="earrings earrings-3" points="231,195 235,187 231,163 226,187 "/>
+						</g>
+						<g class="earrings-part earrings_4 hidden" id="earrings-4">
+							<path class="earrings earrings-4" d="M235 164c0,-3 -2,-5 -4,-5 0,0 0,0 -1,0 2,0 3,2 3,4 0,2 -2,4 -3,4 -2,0 -3,-1 -3,-3 0,0 0,0 0,0 0,3 2,6 4,6 2,0 4,-3 4,-6z"/>
+						</g>
+								
+					</svg>
+					
+					<!-- ========= EYES ========= -->
+
+					<svg class="eyes-part eyes-1" width="327px" height="350px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 327 350">
+						<defs>
+							<clipPath id="eye1-id0">
+								<path d="M147 128c-7,-27 -40,-15 -40,-6 0,5 6,12 14,14 9,2 23,-1 26,-8z"/>
+							</clipPath>
+							<clipPath id="eye1-id1">
+								<path d="M178 128c8,-27 40,-15 40,-6 0,5 -5,12 -13,14 -9,2 -23,-1 -27,-8z"/>
+							</clipPath>
+						</defs>
+						<g id="eyes-1">
+							<path class="cosmetics skin" d="M147 128c-1,-19 -22,-21 -33,-17 -7,3 -10,6 -10,10 1,4 3,9 7,12 5,3 14,4 17,3 0,0 -9,-8 0,-15 9,-6 19,7 19,7zm31 0c2,-19 22,-21 34,-17 6,3 10,6 9,10 0,4 -2,9 -6,12 -5,3 -14,4 -18,3 0,0 10,-8 1,-15 -10,-6 -20,7 -20,7z"/>
+							<path class="eye-1 eye-white" d="M147 128c-7,-27 -40,-15 -40,-6 0,5 6,12 14,14 9,2 23,-1 26,-8z"/>
+							<g style="clip-path:url(#eye1-id0)">
+								<ellipse class="iris" cx="128" cy="123" rx="13" ry="16"/>
+								<ellipse class="pupil" cx="128" cy="121" rx="9" ry="11"/>
+								<path class="highlight eye-white" d="M118 118c2,0 4,1 5,2 0,2 -2,4 -4,5 -2,0 -4,-1 -5,-3 0,-1 1,-3 4,-4zm20 4c-1,0 -2,1 -3,2 0,0 1,1 2,2 1,0 3,-1 3,-1 0,-1 -1,-2 -2,-3z"/>
+								<path class="iris-shadow" d="M128 111c2,0 4,0 5,1 2,2 4,4 4,6 2,2 3,3 4,5 0,0 0,0 0,0 0,-3 0,-5 -1,-7 -2,-5 -7,-8 -12,-8 0,0 0,0 -1,0 -1,0 -3,0 -5,1 -1,1 -3,2 -4,4 -1,2 -3,4 -3,7 1,-2 3,-3 5,-4 1,-2 3,-4 5,-5 1,0 2,0 3,0z"/>
+								<path class="pupil-shadow" d="M133 112c-1,-1 -3,-1 -5,-1 -1,0 -2,0 -3,0 -2,1 -4,3 -5,5 2,-1 4,-1 7,-1 4,0 7,1 10,3 0,-2 -2,-4 -4,-6z"/>
+								<path class="eye-shadow" d="M140 116c1,2 1,4 1,7 0,0 0,0 0,0 1,2 2,4 2,6 0,1 0,3 -1,4 3,-1 4,-3 5,-5 -1,-6 -4,-10 -7,-12zm-25 4c0,-3 2,-5 3,-7 -6,2 -11,5 -11,9 0,2 2,6 4,8 0,0 0,0 0,-1 0,-3 1,-7 4,-9z"/>
+							</g>
+							<path class="fil7" d="M147 128c-7,-27 -40,-15 -40,-6 0,5 6,12 14,14 9,2 23,-1 26,-8z"/>
+							<path class="eye-1 eye-white" d="M178 128c8,-27 40,-15 40,-6 0,5 -5,12 -13,14 -9,2 -23,-1 -27,-8z"/>
+							<g style="clip-path:url(#eye1-id1)">
+								<ellipse class="iris" cx="198" cy="123" rx="13" ry="16"/>
+								<ellipse class="pupil fil8" cx="197" cy="121" rx="9" ry="11"/>
+								<path class="highlight eye-white" d="M188 122c1,0 2,1 2,2 1,0 0,1 -1,2 -2,0 -3,-1 -3,-1 0,-1 1,-2 2,-3zm20 -4c-2,0 -5,1 -5,2 0,2 1,4 4,5 2,0 4,-1 5,-3 0,-1 -2,-3 -4,-4z"/>
+								<path class="iris-shadow" d="M197 111c-1,0 -3,0 -5,1 -2,2 -3,4 -4,6 -1,2 -3,3 -4,5 0,0 0,0 0,0 0,-3 1,-5 2,-7 2,-5 7,-8 12,-8 0,0 0,0 0,0 2,0 4,0 5,1 2,1 3,2 5,4 1,2 2,4 3,7 -2,-2 -3,-3 -5,-4 -1,-2 -3,-4 -5,-5 -1,0 -2,0 -4,0z"/>
+								<path class="pupil-shadow" d="M192 112c2,-1 4,-1 5,-1 2,0 3,0 4,0 2,1 4,3 5,5 -2,-1 -5,-1 -7,-1 -4,0 -8,1 -11,3 1,-2 2,-4 4,-6z"/>
+								<path class="eye-shadow" d="M186 116c-1,2 -2,4 -2,7 0,0 0,0 0,0 -1,2 -1,4 -1,6 0,1 0,3 0,4 -2,-1 -4,-3 -5,-5 2,-6 5,-10 8,-12zm25 4c-1,-3 -2,-5 -3,-7 6,2 10,5 10,9 0,2 -1,6 -3,8 0,0 0,0 0,-1 0,-3 -2,-7 -4,-9z"/>
+							</g>
+							<path class="fil7" d="M178 128c8,-27 40,-15 40,-6 0,5 -5,12 -13,14 -9,2 -23,-1 -27,-8z"/>
+						</g>
+					</svg>
+
+					<svg class="eyes-part eyes-2 hidden" width="327px" height="350px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 327 350">
+						<defs>
+							<clipPath id="eye2-id0">
+								<path d="M147 128c-1,-4 -2,-9 -5,-10 -12,-5 -39,-6 -35,4 2,5 6,12 14,14 9,2 23,-1 26,-8z"/>
+							</clipPath>
+							<clipPath id="eye2-id1">
+								<path d="M178 128c2,-4 2,-9 5,-10 12,-5 40,-6 35,4 -2,5 -5,12 -13,14 -9,2 -23,-1 -27,-8z"/>
+							</clipPath>
+						</defs>
+						<g id="eyes-2">
+							<path class="skin cosmetics" d="M147 128c0,-6 -1,-11 -5,-12 -8,-4 -30,-7 -38,-1 -2,2 2,12 8,16 4,4 11,6 15,5 0,0 -8,-8 1,-15 9,-6 19,7 19,7zm31 0c0,-6 2,-11 5,-12 9,-4 31,-7 39,-1 2,2 -3,12 -8,16 -4,4 -11,6 -15,5 0,0 8,-8 -1,-15 -10,-6 -20,7 -20,7z"/>
+							<path class="eye-1 eye-white" d="M147 128c-1,-4 -2,-9 -5,-10 -12,-5 -39,-6 -35,4 2,5 6,12 14,14 9,2 23,-1 26,-8z"/>
+							<g style="clip-path:url(#eye2-id0)">
+								<ellipse class="iris" cx="128" cy="123" rx="13" ry="16"/>
+								<ellipse class="pupil" cx="128" cy="121" rx="9" ry="11"/>
+								<path class="eye-white highlight" d="M118 118c2,0 4,1 5,2 0,2 -2,4 -4,5 -2,0 -4,-1 -5,-3 0,-1 1,-3 4,-4zm20 4c-1,0 -2,1 -3,2 0,0 1,1 2,2 1,0 3,-1 3,-1 0,-1 -1,-2 -2,-3z"/>
+								<path class="iris-shadow" d="M128 111c2,0 4,0 5,1 2,2 4,4 4,6 2,2 3,3 4,5 0,0 0,0 0,0 0,-3 0,-5 -1,-7 -2,-5 -7,-8 -12,-8 0,0 0,0 -1,0 -1,0 -3,0 -5,1 -1,1 -3,2 -4,4 -1,2 -3,4 -3,7 1,-2 3,-3 5,-4 1,-2 3,-4 5,-5 1,0 2,0 3,0z"/>
+								<path class="pupil-shadow" d="M133 112c-1,-1 -3,-1 -5,-1 -1,0 -2,0 -3,0 -2,1 -4,3 -5,5 2,-1 4,-1 7,-1 4,0 7,1 10,3 0,-2 -2,-4 -4,-6z"/>
+								<path class="eye-shadow" d="M115 120c0,-3 1,-4 2,-6 -3,1 -6,1 -8,2 -3,2 -2,4 -2,6 1,2 2,6 4,8 0,0 0,0 0,-1 0,-3 1,-7 4,-9zm26 -2c0,0 0,2 0,5 0,0 0,0 0,0 1,2 2,4 2,6 0,1 0,3 -1,4 3,-1 4,-3 5,-5 -2,-9 -4,-9 -6,-10z"/>
+							</g>
+							<path class="fil7" d="M147 128c-1,-4 -2,-9 -5,-10 -12,-5 -39,-6 -35,4 2,5 6,12 14,14 9,2 23,-1 26,-8z"/>
+							<path class="eye2 eye-white" d="M178 128c2,-4 2,-9 5,-10 12,-5 40,-6 35,4 -2,5 -5,12 -13,14 -9,2 -23,-1 -27,-8z"/>
+							<g style="clip-path:url(#eye2-id1)">
+								<ellipse class="iris" cx="198" cy="123" rx="13" ry="16"/>
+								<ellipse class="pupil" cx="197" cy="121" rx="9" ry="11"/>
+								<path class="eye-white highlight" d="M208 118c-2,0 -5,1 -5,2 0,2 1,4 4,5 2,0 4,-1 5,-3 0,-1 -2,-3 -4,-4zm-20 4c1,0 2,1 2,2 1,0 0,1 -1,2 -2,0 -3,-1 -3,-1 0,-1 1,-2 2,-3z"/>
+								<path class="iris-shadow" d="M197 111c-1,0 -3,0 -5,1 -2,2 -3,4 -4,6 -1,2 -3,3 -4,5 0,0 0,0 0,0 0,-3 1,-5 2,-7 2,-5 7,-8 12,-8 0,0 0,0 0,0 2,0 4,0 5,1 2,1 3,2 5,4 1,2 2,4 3,7 -2,-2 -3,-3 -5,-4 -1,-2 -3,-4 -5,-5 -1,0 -2,0 -4,0z"/>
+								<path class="pupil-shadow" d="M192 112c2,-1 4,-1 5,-1 2,0 3,0 4,0 2,1 4,3 5,5 -2,-1 -5,-1 -7,-1 -4,0 -8,1 -11,3 1,-2 2,-4 4,-6z"/>
+								<path class="eye-shadow" d="M211 120c-1,-3 -1,-4 -2,-6 3,1 6,1 8,2 2,2 2,4 1,6 0,2 -1,6 -3,8 0,0 0,0 0,-1 0,-3 -2,-7 -4,-9zm-26 -2c0,0 -1,2 -1,5 0,0 0,0 0,0 -1,2 -1,4 -1,6 0,1 0,3 0,4 -2,-1 -4,-3 -5,-5 3,-9 4,-9 7,-10z"/>
+							</g>
+							<path class="fil7" d="M178 128c2,-4 2,-9 5,-10 12,-5 40,-6 35,4 -2,5 -5,12 -13,14 -9,2 -23,-1 -27,-8z"/>
+						</g>								
+					</svg>
+
+					<svg class="eyes-part eyes-3 hidden" width="327px" height="350px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 327 350">
+						<defs>
+							<clipPath id="eye3-id0">
+								<path d="M147 128c-1,-20 -22,-17 -33,-12 -4,2 -6,3 -7,6 -1,5 4,12 12,14 9,2 25,-1 28,-8z"/>
+							</clipPath>
+							<clipPath id="eye3-id1">
+								<path d="M178 128c1,-20 22,-17 34,-12 4,2 6,3 6,6 1,5 -3,12 -12,14 -8,2 -24,-1 -28,-8z"/>
+							</clipPath>
+						</defs>
+							<g id="eyes-3">
+								<path class="skin cosmetics" d="M178 128c-1,-25 32,-17 42,-11 4,2 2,12 -5,16 -5,3 -14,3 -17,3 0,0 9,-8 0,-15 -10,-6 -20,7 -20,7zm-31 0c2,-25 -31,-17 -41,-11 -4,2 -2,12 5,16 4,3 13,3 17,3 0,0 -9,-8 0,-15 9,-6 19,7 19,7z"/>
+								<path class="eye-1 eye-white" d="M147 128c-1,-20 -22,-17 -33,-12 -4,2 -6,3 -7,6 -1,5 4,12 12,14 9,2 25,-1 28,-8z"/>
+								<g style="clip-path:url(#eye3-id0)">
+									<ellipse id="iris" class="iris" cx="128" cy="123" rx="13" ry="16"/>
+									<ellipse id="pupil" class="pupil" cx="128" cy="121" rx="9" ry="11"/>
+									<path id="highlight" class="eye-white highlight" d="M118 118c2,0 4,1 5,2 0,2 -2,4 -4,5 -2,0 -4,-1 -5,-3 0,-1 1,-3 4,-4zm20 4c-1,0 -2,1 -3,2 0,0 1,1 2,2 1,0 3,-1 3,-1 0,-1 -1,-2 -2,-3z"/>
+									<path id="iris-shadow" class="iris-shadow" d="M128 111c2,0 4,0 5,1 2,2 4,4 4,6 2,2 3,3 4,5 0,0 0,0 0,0 0,-3 0,-5 -1,-7 -2,-5 -7,-8 -12,-8 0,0 0,0 -1,0 -1,0 -3,0 -5,1 -1,1 -3,2 -4,4 -1,2 -3,4 -3,7 1,-2 3,-3 5,-4 1,-2 3,-4 5,-5 1,0 2,0 3,0z"/>
+									<path id="pupil-shadow" class="pupil-shadow" d="M133 112c-1,-1 -3,-1 -5,-1 -1,0 -2,0 -3,0 -2,1 -4,3 -5,5 2,-1 4,-1 7,-1 4,0 7,1 10,3 0,-2 -2,-4 -4,-6z"/>
+									<path id="eye-shadow" class="eye-shadow" d="M115 120c0,-2 1,-3 1,-5 -6,3 -9,4 -9,7 0,4 1,7 4,10 0,-1 0,-1 0,-3 0,-2 1,-7 4,-9zm24 -6c0,0 2,4 2,9 1,6 0,0 0,0 1,2 2,5 2,6 0,2 0,2 -1,4 3,-2 4,-3 5,-5 0,-6 -3,-12 -8,-14z"/>
+								</g>
+								<path class="fil7" d="M147 128c-1,-20 -22,-17 -33,-12 -4,2 -6,3 -7,6 -1,5 4,12 12,14 9,2 25,-1 28,-8z"/>
+								<path class="eye2 eye-white" d="M178 128c1,-20 22,-17 34,-12 4,2 6,3 6,6 1,5 -3,12 -12,14 -8,2 -24,-1 -28,-8z"/>
+								<g style="clip-path:url(#eye3-id1)">
+									<ellipse class="iris" cx="198" cy="123" rx="13" ry="16"/>
+									<ellipse class="pupil" cx="197" cy="121" rx="9" ry="11"/>
+									<path class="eye-white highlight" d="M188 122c1,0 2,1 2,2 1,0 0,1 -1,2 -2,0 -3,-1 -3,-1 0,-1 1,-2 2,-3zm20 -4c-2,0 -5,1 -5,2 0,2 1,4 4,5 2,0 4,-1 5,-3 0,-1 -2,-3 -4,-4z"/>
+									<path class="iris-shadow" d="M197 111c-1,0 -3,0 -5,1 -2,2 -3,4 -4,6 -1,2 -3,3 -4,5 0,0 0,0 0,0 0,-3 1,-5 2,-7 2,-5 7,-8 12,-8 0,0 0,0 0,0 2,0 4,0 5,1 2,1 3,2 5,4 1,2 2,4 3,7 -2,-2 -3,-3 -5,-4 -1,-2 -3,-4 -5,-5 -1,0 -2,0 -4,0z"/>
+									<path class="pupil-shadow" d="M192 112c2,-1 4,-1 5,-1 2,0 3,0 4,0 2,1 4,3 5,5 -2,-1 -5,-1 -7,-1 -4,0 -8,1 -11,3 1,-2 2,-4 4,-6z"/>
+									<path class="eye-shadow" d="M187 114c0,0 -3,4 -3,9 0,6 0,0 0,0 -1,2 -1,5 -1,6 0,2 0,2 0,4 -2,-2 -4,-3 -5,-5 1,-6 3,-12 9,-14zm24 6c-1,-2 -1,-3 -2,-5 6,3 9,4 9,7 1,4 -1,7 -3,10 0,-1 0,-1 0,-3 0,-2 -2,-7 -4,-9z"/>
+								</g>
+								<path class="fil7" d="M178 128c1,-20 22,-17 34,-12 4,2 6,3 6,6 1,5 -3,12 -12,14 -8,2 -24,-1 -28,-8z"/>
+							</g>
+					</svg>
+
+					<!-- ========= HAIR FRONT ========= -->
+
+					<svg class="hair-front-parts" width="327px" height="350px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 327 350">
+						<g class="hair-front-part hair-front-part-4" id="hair-f-4">
+							<path class="hair" d="M190 59c-27,31 -42,32 -53,37 -24,9 -33,12 -39,38 -1,7 -8,24 -9,26 0,1 -10,-11 -12,-29 -5,-27 6,-78 34,-101 24,-19 42,-10 42,-10 0,0 10,-13 35,-2 58,23 64,84 61,114 -1,9 -7,23 -12,29 -1,0 -6,-9 -7,-11 -6,-12 -5,-28 -9,-38 -7,-22 -29,-36 -31,-53z"/>
+						</g>
+						<g class="hair-front-part hair-front-part-1 hidden" id="hair-f-1">
+							<path class="hair" d="M214 61c0,0 -6,30 -21,37 -15,6 -20,4 -20,4l15 -34c0,0 -16,30 -27,34 -12,5 -15,4 -15,4l5 -20c0,0 -6,13 -21,19 -15,7 -26,1 -27,10l-5 25c0,0 -12,-3 -14,-26 -3,-24 1,-65 27,-84 26,-18 42,-10 42,-10 0,0 9,-11 35,-2 26,8 39,23 47,39 8,15 12,45 7,60 -5,15 -16,23 -16,23l-3 -29c-1,-2 -11,-4 -9,-50z"/>
+						</g>
+						<g class="hair-front-part hair-front-part-2 hidden" id="hair-f-2">
+							<path class="hair" d="M214 61c0,0 -6,30 -21,37 -15,6 -20,4 -20,4l15 -34c0,0 -16,30 -27,34 -12,5 -15,4 -15,4l5 -20c0,0 -6,13 -21,19 -15,7 -26,1 -27,10l-5 25c0,0 -12,-3 -14,-26 -1,-8 -20,-3 -13,-10 5,-5 7,-26 17,-38 3,-5 -11,-12 -6,-14 6,-3 23,-18 29,-22 26,-18 42,-10 42,-10 1,-10 24,-12 29,-13 5,-1 -4,11 -2,11 22,0 40,19 58,26 7,2 -6,7 -2,12 11,18 6,36 17,43 5,3 -9,12 -11,18 -5,15 -16,23 -16,23l-3 -29c-1,-2 -11,-4 -9,-50z"/>
+						</g>
+						<g class="hair-front-part hair-front-part-3 hidden" id="hair-f-3">
+							<path class="hair" d="M206 67c-7,28 -51,49 -51,48 4,-4 8,-9 12,-14 3,-6 6,-11 9,-17 -20,22 -41,28 -45,29 -2,0 3,-3 6,-7 5,-6 10,-13 9,-12 -26,23 -39,6 -50,48 -1,7 -6,16 -7,18 0,1 -12,-13 -12,-31 -1,-31 9,-78 34,-99 24,-19 42,-10 42,-10 0,0 10,-12 35,-2 57,23 63,81 61,112 0,9 -7,25 -12,31 -1,0 -4,-4 -5,-6 -6,-13 -8,-35 -12,-44 -6,-14 -14,-31 -14,-44z"/>
+						</g>			
+						<g class="hair-front-part hair-front-part-5 hidden" id="hair-f-5">
+							<path class="hair" d="M215 61c0,0 -5,10 -20,17 -15,7 -18,7 -17,7 25,-37 -5,-2 -23,3 -11,3 -26,5 -26,5 13,-16 5,-10 -7,-3 -13,7 -18,16 -19,25l-4 25c0,0 -13,-3 -15,-26 -3,-23 1,-65 27,-84 26,-18 43,-10 43,-10 0,0 9,-11 35,-2 26,8 38,23 46,39 8,15 12,45 7,60 -5,15 -16,23 -16,23l-3 -29c-1,-2 -11,-4 -8,-50z"/>
+						</g>
+						<g class="hair-front-part hair-front-part-6 hidden" id="hair-f-6">
+							<path class="hair" d="M149 57c-12,18 -31,32 -40,56 -7,18 -8,40 -6,73 1,29 5,52 5,52 0,0 -32,-35 -34,-54 -1,-13 -3,-44 2,-77 3,-27 14,-60 35,-77 24,-19 42,-10 42,-10 0,0 10,-13 35,-2 47,19 60,62 62,93 4,31 2,61 1,73 -1,19 -34,54 -34,54 0,0 3,-25 5,-54 3,-31 1,-54 -5,-70 -11,-35 -47,-43 -68,-57z"/>
+						</g>
+						  
+					</svg>
+
+					<!-- ========= EYEBROWS ========= -->
+
+					<svg class="male-eyebrows" width="327px" height="350px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 327 350">
+						<path class="hair-dark eyebrows" d="M146 106c0,0 -1,-2 -4,-4 -5,-3 -13,-6 -24,-5 -19,2 -14,9 -14,9 0,0 10,-7 42,0zm34 0c0,0 1,-3 4,-4 4,-3 12,-6 24,-5 18,2 14,9 14,9 0,0 -10,-7 -42,0z"/>	
+					</svg>					
+					
+					<svg class="female-eyebrows hidden" width="327px" height="350px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 327 350">
+						<path class="hair-dark eyebrows" d="M145 102c0,0 -10,-9 -29,-5 -6,1 -9,2 -10,4 -1,1 -3,3 -3,5 0,0 9,-8 42,-4zm36 0c0,0 10,-9 28,-5 7,1 9,2 11,4 3,3 3,5 3,5 0,0 -9,-8 -42,-4z"/>
+					</svg>	
+
+					<!-- ========= MOUTH ========= -->
+
+					<svg class="mouth-parts" width="327px" height="350px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 327 350">
+						<g class="mouth-part mouth-1" id="mouth-1">
+							<path class="mouth" d="M141 182c7,3 15,4 22,4 7,0 15,-1 22,-4 -3,6 -16,8 -22,8 -5,0 -18,-2 -22,-8z"/>
+						</g>
+						<g class="mouth-part mouth-2 hidden" id="mouth-2">
+							<path class="mouth" d="M145 186c6,-2 12,0 18,0 6,0 12,-2 18,0 -5,2 -13,3 -18,3 -4,0 -14,-1 -18,-3z"/>
+						</g>
+						<g class="mouth-part mouth-3 hidden" id="mouth-3">
+							<path class="mouth" d="M145 187c6,-2 12,-3 18,-3 6,0 12,1 18,3 -5,1 -13,0 -18,0 -4,0 -14,1 -18,0z"/>
+						</g>
+						<g class="mouth-part mouth-4 hidden" id="mouth-4">
+							<path class="mouth" d="M146 185c5,3 10,1 17,1 7,0 12,2 18,-1 -3,5 -13,4 -18,4 -4,0 -15,1 -17,-4z"/>
+						</g>
+						<g class="mouth-part mouth-5 hidden" id="mouth-5">
+							<path class="mouth" d="M148 187c3,1 12,2 21,1 8,-1 13,-3 17,-7 -5,2 -11,4 -18,4 -13,1 -16,1 -20,2z"/>
+						</g>
+					</svg>
+
+					<!-- ========= ACCS: GLASSES ========= -->
+
+					<svg class="glss-parts" width="327px" height="350px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 327 350">
+						<g class="glasses-part glss-0" id="glss-0">
+							<!-- empty preset -->
+						</g>
+						<g class="glasses-part glss-1 hidden" id="glss-1">
+							<path class="glasses" d="M108 112l37 0c4,0 8,3 8,7l-4 16c0,4 -3,8 -8,8l-28 0c-5,0 -7,-4 -8,-8l-5 -16c-1,-4 4,-7 8,-7zm110 0l-37 0c-4,0 -9,3 -8,7l3 16c1,4 4,8 8,8l29 0c4,0 7,-4 8,-8l5 -16c1,-4 -4,-7 -8,-7zm10 5l-5 19c-1,5 -4,9 -8,9l-32 0c-5,0 -8,-4 -9,-9l-2 -12c-3,-5 -8,-5 -9,-5l0 0c-1,0 -6,0 -9,5l-2 12c-1,5 -4,9 -9,9l-32 0c-5,0 -7,-4 -9,-9l-5 -19c-1,-4 4,-9 9,-9l41 0c3,0 7,3 8,6 1,0 5,2 8,2l0 0c3,0 7,-2 8,-2 1,-3 5,-6 8,-6l41 0c5,0 10,5 8,9z"/>
+						</g>
+						<g class="glasses-part glss-2 hidden" id="glss-2">
+							<path class="glasses" d="M171 119c-2,1 -5,2 -8,2l0 0c-3,0 -6,-1 -8,-2 0,-3 -5,-5 -9,-5l-43 0c-7,0 -10,2 -8,7l4 14c1,3 4,6 9,6l0 0c-3,0 -5,-3 -6,-5l-3 -13c-2,-5 2,-5 6,-5l38 0c5,0 9,1 8,5l-2 12c-1,3 -4,6 -7,6l0 0c5,0 8,-3 9,-6l2 -6c3,-4 9,-5 10,-5l0 0c1,0 7,1 10,5l2 6c1,3 4,6 9,6l0 0c-3,0 -6,-3 -7,-6l-2 -12c-1,-4 3,-5 7,-5l39 0c4,0 8,0 6,5l-3 13c-1,2 -3,5 -6,5l0 0c5,0 8,-3 9,-6l4 -14c2,-5 -1,-7 -8,-7l-43 0c-4,0 -9,2 -9,5z"/>
+						</g>
+						<g class="glasses-part glss-3 hidden" id="glss-3">
+							<path class="glasses" d="M126 102c-15,0 -27,12 -27,27 0,15 12,27 27,27 13,0 25,-10 27,-23 2,-4 4,-5 6,-6 1,0 3,0 4,0 1,0 2,0 3,0 3,1 5,2 7,6 2,13 13,23 27,23 15,0 27,-12 27,-27 0,-15 -12,-27 -27,-27 -11,0 -21,7 -25,16 -5,7 -8,5 -12,6 -4,-1 -8,1 -12,-6 -4,-9 -14,-16 -25,-16zm96 27c0,-13 -10,-23 -23,-23 -13,0 -23,10 -23,23 0,13 10,23 23,23 13,0 23,-10 23,-23zm-118 0c0,-13 10,-23 23,-23 12,0 23,10 23,23 0,13 -11,23 -23,23 -13,0 -23,-10 -23,-23z"/>
+						</g>
+						<g class="glasses-part glss-4 hidden" id="glss-4">
+							<path class="glasses" d="M171 120c-1,-6 6,-8 12,-9 6,-1 15,-1 21,0 5,0 15,2 16,5 2,4 2,13 0,17 -1,5 -4,9 -10,10 -7,1 -14,1 -21,0 -7,-2 -9,-4 -12,-9 -3,-4 -5,-8 -6,-14zm-17 0c-1,6 -2,10 -5,14 -3,5 -6,8 -13,9 -6,1 -14,1 -20,0 -7,-1 -9,-5 -11,-10 0,-3 -1,-6 -1,-9 0,-2 1,-7 2,-8 2,-3 11,-5 16,-5 11,-1 10,-1 20,0 4,1 6,1 9,3 3,1 4,3 3,6zm-23 -14c-10,0 -20,1 -29,3 -3,0 -5,0 -6,2 0,19 0,5 4,17 1,4 2,7 4,11 1,3 4,5 7,7 8,2 22,1 29,-1 4,-1 7,-3 10,-6 4,-6 6,-12 9,-19 1,-2 0,-4 4,-4 3,0 3,1 4,3 3,8 4,14 9,20 5,6 14,8 23,8 21,0 22,-3 27,-18 0,-1 1,-4 2,-5 0,-1 2,-2 2,-4l0 -8c-1,-2 -1,-3 -3,-3 -3,-1 -6,-1 -9,-2 -13,-1 -27,-2 -40,0 -22,4 -29,-1 -47,-1z"/>
+						</g>
+					</svg>
+				</div>
+
+				<div class="prop">
+					<div class="gender-box">
+						<div class="gender-icon gender-male selected-gender">♂</div>
+						<div class="gender-icon gender-female">♀</div>
+						<div class="gender-icon"><button type="button" onclick="return downloadImage();"><i class="gender-female"></i>></button></div>
+					</div>
+					<div class="toggles">
+						<div class="toggle cosmetics-toggle">
+							<input class="checkbox" type="checkbox" id="cosmetics-checkbox">
+							<label class="toggle-label cosmetics-label" for="cosmetics-checkbox">
+								<span class="ru active">Ресницы</span>
+								<span class="en">Eyelashes</span>
+							</label>
+						</div>
+						<div class="toggle r-band-toggle">
+							<span class="r-band-tooltip ru active">
+								Эта опция переключает цвет резинок на прическах (тех, где есть резинки). Цвет резинки может зависеть либо от цвета футболки, либо от цвета воротника.
+							</span>
+							<span class="r-band-tooltip en">
+								This option toggles rubber bands color (the effect is visible on hairstyles with rubber bands). The color can depend on the shirt color or on the collar color.
+							</span>
+							<input class="checkbox" type="checkbox" id="r-band-checkbox">
+							<label class="toggle-label r-band-label" for="r-band-checkbox">
+								<span class="ru active">Цвет резинок</span>
+								<span class="en">Rubber Band Color</span>
+							</label>
+						</div>
+					</div>
+				</div>				
+			</div>
+		</div>
+		<div class="copyright">by Gen Rayne (2019)</div>
+	</div>
+
+	<noscript>Если что-то не работает, значит, в вашем браузере не поддерживается JavaScript либо отключена поддержка скриптов :(</noscript>
+</body>
+</html>
